@@ -1,11 +1,12 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:state_manage_todo_app/common/dart/extension/datetime_extension.dart';
+import 'package:state_manage_todo_app/common/data/memory/todo_data_holder.dart';
 import 'package:state_manage_todo_app/screen/main/tab/tab_item.dart';
 import 'package:state_manage_todo_app/screen/main/tab/tab_navigator.dart';
 import 'package:state_manage_todo_app/screen/main/write/d_write_todo.dart';
 
 import '../../common/common.dart';
+import '../../common/data/memory/vo_todo.dart';
 import 'w_menu_drawer.dart';
 
 class MainScreen extends StatefulWidget {
@@ -53,8 +54,11 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
           onPressed: ()async{
             final result = await WriteTodoDialog().show();
             if(result != null){
-              debugPrint(result?.text);
-              debugPrint(result?.dateTime.formattedDate);
+              TodoDataHolder.of(context).notifier.addTodo(Todo(
+                id: DateTime.now().microsecondsSinceEpoch,
+                title: result.text,
+                dueDate: result.dateTime,
+              ));
             }
           },
           child: Icon(EvaIcons.plus),

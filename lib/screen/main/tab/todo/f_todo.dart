@@ -1,4 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:state_manage_todo_app/common/common.dart';
+import 'package:state_manage_todo_app/common/dart/extension/color_extension.dart';
+
+import 'f_todo_list.dart';
 
 class TodoFragment extends StatefulWidget {
   const TodoFragment({super.key});
@@ -10,6 +14,21 @@ class TodoFragment extends StatefulWidget {
 class _TodoFragmentState extends State<TodoFragment> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      color: context.appColors.seedColor.getSwatchByBrightness(100),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () => Scaffold.of(context).openDrawer(),
+                icon: const Icon(Icons.menu),
+              )
+            ],
+          ),
+          Expanded(child: const TodoList().pSymmetric(h: 15)),
+        ],
+      ),
+    );
   }
 }
