@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:nav/nav.dart';
 import 'package:state_manage_todo_app/common/common.dart';
+import 'package:state_manage_todo_app/common/data/memory/todo_data_notifier.dart';
 import 'package:state_manage_todo_app/screen/main/s_main.dart';
 
 import 'common/theme/custom_theme_app.dart';
@@ -20,15 +21,19 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   @override
   GlobalKey<NavigatorState> get navigatorKey => App.navigatorKey;
 
+  final notifier = TodoDataNotifier();
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
 
+
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    notifier.dispose();
     super.dispose();
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get_utils/src/extensions/string_extensions.dart';
 import 'package:simple_shadow/simple_shadow.dart';
+import 'package:state_manage_todo_app/common/widget/constant_widget.dart';
 
 import '../dialog/d_message.dart';
 import '../../common/common.dart';
@@ -106,7 +107,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
             },
           ),
           const Line(),
-          isSmallScreen(context) ? const Height(10) : const EmptyExpanded(),
+          isSmallScreen(context) ? const Height(10) : spacer,
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: ModeSwitch(

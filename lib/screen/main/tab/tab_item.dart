@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:state_manage_todo_app/common/common.dart';
+import 'package:state_manage_todo_app/screen/main/tab/search/f_search.dart';
+import 'package:state_manage_todo_app/screen/main/tab/todo/f_todo.dart';
 
-import 'favorite/f_favorite.dart';
-import 'home/f_home.dart';
 
 enum TabItem {
-  home(Icons.home, '홈', HomeFragment()),
-  favorite(Icons.star, '즐겨찾기', FavoriteFragment(isShowBackButton: false));
+  todo(Icons.event_note_outlined, 'Todo', TodoFragment()),
+  search(Icons.star, 'Search', SearchFragment());
 
   final IconData activeIcon;
   final IconData inActiveIcon;

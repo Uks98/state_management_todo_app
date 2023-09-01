@@ -1,7 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 
 export 'dart:async';
-
+export 'package:state_manage_todo_app/common/widget/constant_widget.dart';
 export 'package:easy_localization/easy_localization.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:nav/nav.dart';
