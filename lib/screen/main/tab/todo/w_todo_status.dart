@@ -4,11 +4,11 @@ import 'package:state_manage_todo_app/screen/main/tab/todo/w_fire.dart';
 
 import '../../../../common/data/memory/vo_todo.dart';
 import '../../../../common/data/memory/vo_todo_status.dart';
-import '../../../../common/widget/w_tap.dart';
 
 
 class TodoStatusWidget extends StatelessWidget {
   final Todo todo;
+
 
   const TodoStatusWidget(this.todo, {super.key});
 
