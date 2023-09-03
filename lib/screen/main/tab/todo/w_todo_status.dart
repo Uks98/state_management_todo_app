@@ -33,7 +33,7 @@ class TodoStatusWidget extends StatelessWidget {
               value: false,
               onChanged: null,
             ),
-            TodoStatus.ongoing => const Fire()
+            TodoStatus.onGoing =>  Container(color:Colors.orange,)
           }),
     );
   }

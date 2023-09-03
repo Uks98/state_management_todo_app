@@ -8,11 +8,14 @@ import 'package:state_manage_todo_app/common/widget/scaffold/bottom_dialog_scaff
 import 'package:state_manage_todo_app/common/widget/w_round_button.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:state_manage_todo_app/screen/main/write/vo_write_todo_result.dart';
+import '../../../common/data/memory/vo_todo.dart';
 import '../../../common/widget/w_rounded_container.dart';
 
 //최종적으로 넘겨주고 싶은 타입 제네릭으로 표시
 class WriteTodoDialog extends DialogWidget<WriteTodoResult> {
-   WriteTodoDialog({super.key});
+
+  final Todo? todoForEdit;
+   WriteTodoDialog({super.key,this.todoForEdit});
 
   @override
   DialogState<WriteTodoDialog> createState() => _WriteTodoDialogState();
@@ -22,6 +25,15 @@ class _WriteTodoDialogState extends DialogState<WriteTodoDialog> with AfterLayou
   DateTime _seletedDate = DateTime.now();
   final textController = TextEditingController();
   final node = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.todoForEdit != null){
+      _seletedDate = widget.todoForEdit!.dueDate;
+      textController.text = widget.todoForEdit!.title;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return BottomDialogScaffold(body: RoundedContainer(
@@ -42,7 +54,7 @@ class _WriteTodoDialogState extends DialogState<WriteTodoDialog> with AfterLayou
                 controller: textController,
 
               )),
-              RoundButton(text: "추가", onTap: (){
+              RoundButton(text: isEditMode ? "수정" : "추가", onTap: (){
                 widget.hide(WriteTodoResult(_seletedDate, textController.text));
 
               })
@@ -54,6 +66,7 @@ class _WriteTodoDialogState extends DialogState<WriteTodoDialog> with AfterLayou
 
   }
 
+  bool get isEditMode => widget.todoForEdit != null;
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
     AppKeyboardUtil.show(context, node);
