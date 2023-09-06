@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:state_manage_todo_app/common/data/memory/todo_data_holder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common.dart';
 import '../../theme/custom_theme.dart';
@@ -46,5 +46,8 @@ extension ContextExtension on BuildContext {
 
   Function(CustomTheme) get changeTheme => CustomThemeHolder.of(this).changeTheme;
 
+  TodoCubit get readTodoCubit => read();
+
+  TodoCubit get watchTodoCubit => watch();
 
 }

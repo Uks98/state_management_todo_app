@@ -50,6 +50,7 @@ dependencies:
   #architecture
   event_bus: ^2.0.0
   get: ^4.6.5
+  flutter_bloc: ^8.1.3
 
   #ui - resource
   eva_icons_flutter: ^3.1.0
@@ -64,6 +65,7 @@ dependencies:
   flutter_svg: ^2.0.3
   cached_network_image: ^3.2.3
   #rive: 0.10.0
+
   #ui - util
   keyboard_utils_fork: ^0.0.4
 

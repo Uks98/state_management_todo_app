@@ -1,14 +1,16 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_manage_todo_app/common/data/memory/vo_todo_status.dart';
 
-class Todo{
-  Todo({required this.id,required this.title,required this.dueDate,
-  this.status = TodoStatus.incomplete
-  }):createdTime = DateTime.now();
+part 'vo_todo.freezed.dart';
 
-  int id;
-  String title;
-  final DateTime createdTime;
-  DateTime? modifyTime;
-  DateTime dueDate;
-  TodoStatus status;
+@freezed
+class Todo with _$Todo {
+  const factory Todo({
+    required int id,
+    required String title,
+    required DateTime dueDate,
+    DateTime? modifyTime,
+    required DateTime createdTime,
+    required TodoStatus status,
+  }) = _Todo;
 }
