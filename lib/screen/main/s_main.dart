@@ -1,22 +1,20 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:state_manage_todo_app/common/data/memory/todo_data_holder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:state_manage_todo_app/screen/main/tab/tab_item.dart';
 import 'package:state_manage_todo_app/screen/main/tab/tab_navigator.dart';
-import 'package:state_manage_todo_app/screen/main/write/d_write_todo.dart';
 
 import '../../common/common.dart';
-import '../../common/data/memory/vo_todo.dart';
 import 'w_menu_drawer.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => MainScreenState();
+  ConsumerState<MainScreen> createState() => MainScreenState();
 }
 
-class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin,TodoDataProvider {
+class MainScreenState extends ConsumerState<MainScreen> with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.todo;
   final tabs = [TabItem.todo, TabItem.search];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
@@ -52,7 +50,8 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: ()async{
-            todoData.addTodo();
+          ref.readHolder.addTodo(); //todo 객체 가져옴
+
           },
           child: Icon(EvaIcons.plus),
         ),

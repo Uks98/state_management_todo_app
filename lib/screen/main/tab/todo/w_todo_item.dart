@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:state_manage_todo_app/common/common.dart';
 import 'package:state_manage_todo_app/common/dart/extension/datetime_extension.dart';
 import 'package:state_manage_todo_app/common/widget/w_arrow.dart';
@@ -9,16 +10,16 @@ import '../../../../common/data/memory/vo_todo.dart';
 import '../../../../common/widget/w_rounded_container.dart';
 
 
-class TodoItem extends StatelessWidget with TodoDataProvider{
+class TodoItem extends ConsumerWidget{
   final Todo todo;
 
   TodoItem(this.todo, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Dismissible(
       onDismissed: (direction){
-        todoData.removeTodo(todo);
+        ref.readHolder.removeTodo(todo);
       },
       background: RoundedContainer(
         color: context.appColors.removeTodoBg,
@@ -60,7 +61,7 @@ class TodoItem extends StatelessWidget with TodoDataProvider{
                   Expanded(child: todo.title.text.size(20).medium.make()),
                   IconButton(
                       onPressed: () async {
-                        todoData.editTodo(todo);
+                        ref.readHolder.editTodo(todo);
                       },
                       icon: const Icon(EvaIcons.editOutline))
                 ],
